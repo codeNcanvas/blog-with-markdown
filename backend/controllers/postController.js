@@ -9,13 +9,14 @@ import Post from '../models/postModel.js';
 
 const createPost = async(req,res) =>{
     try {
-        const {title, markdownContent, author} = req.body;
+        const {title, markdownContent,categories, author} = req.body;
         if (!title || !markdownContent) {
             return res.status(400).json({ message: 'Please provide a title and content for the post.' });
         }
         const newPost = await Post.create({
             title,
             markdownContent,
+            categories,
             author,
         });
         res.status(201).json(newPost);
@@ -85,6 +86,18 @@ const getPostById = async(req,res)=>{
     }
 };
 
+const getPostsByCategory =  async (req, res) => {
+  try {
+    const categoryName = req.params.categoryName;
+
+    const posts = await Post.find({ categories: categoryName })
+      .sort({ createdAt: -1 }); 
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching posts by category', error: error.message });
+  }
+};
+
 /**
  * @desc    Update an existing blog post
  * @route   PATCH /api/posts/:id (or PUT)
@@ -92,7 +105,14 @@ const getPostById = async(req,res)=>{
  */
 const updatePost = async (req, res) => {
   try {
-    
+    const { title, markdownContent, categories } = req.body;
+
+    const updatedData = {
+      title,
+      markdownContent,
+      categories, 
+    };
+
     const updatedPost = await Post.findByIdAndUpdate(
       req.params.id, 
       req.body,      
@@ -154,4 +174,5 @@ export {
     getPostById,
     updatePost,
     deletePost,
+    getPostsByCategory
 };

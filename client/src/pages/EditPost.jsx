@@ -9,6 +9,7 @@ const EditPost = () => {
 
   const [title, setTitle] = useState('');
   const [markdownContent, setMarkdownContent] = useState('');
+  const [categories, setCategories] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -22,6 +23,10 @@ const EditPost = () => {
         
         setTitle(response.data.title);
         setMarkdownContent(response.data.markdownContent);
+        if (response.data.categories && Array.isArray(response.data.categories)) {
+          setCategories(response.data.categories.join(', '));
+        }
+
       } catch (err) {
         console.error('Failed to fetch post for editing:', err);
         setError('Failed to load post data. Please try again.');
@@ -44,10 +49,14 @@ const EditPost = () => {
       return;
     }
 
+     const categoriesArray = categories.split(',').map(cat => cat.trim()).filter(cat => cat);
+
+
     try {
       await apiService.patch(`/posts/${id}`, {
         title,
         markdownContent,
+        categories: categoriesArray
       });
 
       navigate('/admin/dashboard');
@@ -85,6 +94,18 @@ const EditPost = () => {
             className="form-control markdown-input"
             value={markdownContent}
             onChange={(e) => setMarkdownContent(e.target.value)}
+            disabled={submitting}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="categories">Categories (comma-separated)</label>
+          <input
+            type="text"
+            id="categories"
+            className="form-control"
+            value={categories}
+            onChange={(e) => setCategories(e.target.value)}
+            placeholder="e.g., React, Web Development, Tutorial"
             disabled={submitting}
           />
         </div>

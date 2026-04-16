@@ -15,6 +15,11 @@ const postSchema = new mongoose.Schema({
         required: [true,'A post must have content.']
     },
 
+    categories: {
+      type: [String],
+      default: [],
+    },
+
     author:{
         type: String,
         default: 'Admin'
