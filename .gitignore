@@ -1,0 +1,10 @@
+# .gitignore
+
+# Ignore Node.js modules folder
+/node_modules
+
+
+
+#Git scans: 👉 Root → all folders → all files
+# Ignore environment variables file
+.env
