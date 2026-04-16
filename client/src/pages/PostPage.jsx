@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import '../markdown-styles.css';
-
+import { Helmet } from 'react-helmet-async';
 
 const PostPage = () => {
   const { id } = useParams();
@@ -36,6 +36,18 @@ const PostPage = () => {
 
   }, [id]);
 
+   const createMetaDescription = (markdown) => {
+    if (!markdown) return '';
+    // Remove Markdown formatting and trim to a suitable length (e.g., 155 chars).
+    const plainText = markdown
+      .replace(/!\[.*?\]\(.*?\)/g, '') // Remove images
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Keep link text
+      .replace(/[`*#_~]/g, '') // Remove markdown characters
+      .replace(/\s+/g, ' '); // Normalize whitespace
+    
+    return plainText.substring(0, 155).trim() + '...';
+  };
+
   if (loading) {
     return <div>Loading post...</div>;
   }
@@ -52,6 +64,13 @@ const PostPage = () => {
 
   return (
     <article className="post-full">
+      <Helmet>
+        <title>{`${post.title} | My Awesome Blog`}</title>
+        <meta 
+          name="description" 
+          content={createMetaDescription(post.markdownContent)} 
+        />
+      </Helmet>
       <h1>{post.title}</h1>
       <div className="post-full-meta">
         <span>by {post.author}</span>

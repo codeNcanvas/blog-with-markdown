@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import apiService from '../services/apiService';
 import PostListItem from '../components/PostListItem'; 
 import './HomePage.css'; 
+import { Helmet } from 'react-helmet-async';
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
@@ -51,6 +52,13 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
+      <Helmet>
+        <title>My Awesome Blog - Latest Posts</title>
+        <meta 
+          name="description" 
+          content="Welcome to My Awesome Blog. Read the latest articles on web development, technology, and more." 
+        />
+      </Helmet>
       <h1>Latest Posts</h1>
       <div className="post-list">
         {posts.length > 0 ? (
