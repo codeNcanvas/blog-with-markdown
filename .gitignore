@@ -1,7 +1,9 @@
 # .gitignore
 
 # Ignore Node.js modules folder
-/node_modules
+node_modules/
+dist/
+build/
 
 
 
