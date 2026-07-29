@@ -211,6 +211,7 @@ p {
 
 .post-link {
   display: block;
+  height: 100%;
   color: inherit;
   text-decoration: none;
 }
@@ -219,6 +220,7 @@ p {
   position: relative;
   display: grid;
   min-height: 230px;
+  height: 100%;
   padding: 28px;
   overflow: hidden;
   border: 1px solid var(--border);

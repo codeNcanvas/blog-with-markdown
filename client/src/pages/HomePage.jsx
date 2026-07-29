@@ -63,7 +63,7 @@ const HomePage = () => {
         <div className="hero-content">
           <span className="eyebrow">Ideas worth sharing</span>
           <h1>Thoughtful stories for curious minds.</h1>
-          <p>Explore fresh perspectives, practical lessons, and ideas shaped by the craft of building for the web.</p>
+          <p>Explore fresh perspectives, practical lessons, and ideas shaped by creativity.</p>
         </div>
       </section>
       <div className="section-heading">

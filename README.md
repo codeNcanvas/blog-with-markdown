@@ -1,132 +1,169 @@
-# 📝 MERN Blog with Markdown
+# The Markdown
 
-A full-stack blog application built using the **MERN stack** that allows users to create, edit, and manage blog posts using Markdown.
+A full-stack MERN blog for publishing and managing Markdown stories. It includes a responsive reader experience, secure admin authentication, Markdown rendering, pagination, and a complete post-management dashboard.
 
----
+## Features
 
-## 🚀 Features
+### Reader experience
 
-* ✍️ Create blog posts with Markdown support
-* 📝 Edit existing posts
-* 📄 View all posts in a dashboard
-* 🔍 Fetch individual post details
-* ⚡ Fast and responsive UI
-* 🌐 RESTful API integration
+- Responsive editorial-style homepage
+- Paginated collection of published stories
+- Dedicated article pages with rich Markdown rendering
+- Light and dark themes with saved preferences
+- Accessible keyboard focus and reduced-motion support
 
----
+### Admin experience
 
-## 🛠️ Tech Stack
+- JWT-based admin authentication
+- Protected dashboard and editor routes
+- Create, edit, and delete posts
+- Markdown editor with category support
+- Responsive post-management table
 
-### Frontend
+## Technology
 
-* React (Vite)
-* React Router
-* Axios
-* CSS
+- **Frontend:** React 19, Vite, React Router, Axios, React Markdown
+- **Backend:** Node.js, Express, MongoDB, Mongoose
+- **Authentication:** JSON Web Tokens and bcrypt
 
-### Backend
+## Project structure
 
-* Node.js
-* Express.js
-* MongoDB
-* Mongoose
-
----
-
-## 📁 Project Structure
-
-```
-PROJECT/
+```text
+project-blog/
 ├── backend/
 │   ├── controllers/
+│   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── middleware/
-│   ├── server.js
-│   
-│
+│   ├── .env.example
+│   ├── seed.js
+│   └── server.js
 ├── client/
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
-│   │   ├── services/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   └── package.json
-│
-└── .gitignore
+│   │   └── services/
+│   ├── .env.example
+│   └── vite.config.js
+└── README.md
 ```
 
----
+## Prerequisites
 
- ⚙️ Installation & Setup
+Install the following before starting:
 
- 1️⃣ Clone the repository
+- Node.js 20 or newer
+- npm
+- A local MongoDB installation or MongoDB Atlas database
 
-git clone "repo link"
+## Local setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/codeNcanvas/blog-with-markdown.git
 cd blog-with-markdown
+```
 
+### 2. Configure and run the backend
 
- 2️⃣ Setup Backend
-
-
+```bash
 cd backend
 npm install
-
-
-Create a `.env` file:
-
 ```
-MONGODB_URI=your_mongodb_connection_string
+
+Copy `backend/.env.example` to `backend/.env`, then replace the placeholder values:
+
+```env
 PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=replace_with_a_long_random_secret
+JWT_EXPIRES_IN=7d
 ```
 
-Run backend:
+Start the API:
 
 ```bash
 npm run dev
 ```
 
----
- 3️⃣ Setup Frontend
+The API will run at `http://localhost:5000`.
+
+### 3. Configure and run the frontend
+
+Open a second terminal:
 
 ```bash
 cd client
 npm install
+```
+
+Copy `client/.env.example` to `client/.env`:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Start the Vite development server:
+
+```bash
 npm run dev
 ```
 
----
+Open `http://localhost:5173` in your browser. Port 5000 serves only the API, not the website.
 
-## 🌐 API Endpoints
+> Environment variable names exposed to Vite must begin with `VITE_`. Restart the frontend server after changing `.env`.
 
-| Method | Endpoint   | Description     |
-| ------ | ---------- | --------------- |
-| GET    | /posts     | Get all posts   |
-| GET    | /posts/:id | Get single post |
-| POST   | /posts     | Create post     |
-| PATCH  | /posts/:id | Update post     |
-| DELETE | /posts/:id | Delete post     |
+## Create the first admin
 
----
+The seed script creates the initial admin account defined in `backend/seed.js`.
 
-## 🧠 Key Learnings
+```bash
+cd backend
+node seed.js
+```
 
-* REST API design using Express
-* MongoDB CRUD operations with Mongoose
-* React state management & routing
-* Full-stack integration
-* Error handling & validation
+For a public or production deployment, replace the default seed credentials before running this command.
 
----
+## Available commands
 
-## 🤝 Contributing
+Run these commands inside the relevant directory.
 
-Contributions are welcome! 
+| Directory | Command | Purpose |
+| --- | --- | --- |
+| `client` | `npm run dev` | Start the frontend development server |
+| `client` | `npm run build` | Create a production frontend build |
+| `client` | `npm run lint` | Check frontend code quality |
+| `client` | `npm run preview` | Preview the production build locally |
+| `backend` | `npm run dev` | Start the API with automatic reload |
+| `backend` | `npm start` | Start the API with Node.js |
 
----
+## API routes
 
+| Method | Route | Access | Description |
+| --- | --- | --- | --- |
+| `POST` | `/api/auth/login` | Public | Authenticate an admin |
+| `GET` | `/api/posts` | Public | Get paginated posts |
+| `GET` | `/api/posts/:id` | Public | Get one post |
+| `GET` | `/api/posts/category/:categoryName` | Public | Get posts by category |
+| `POST` | `/api/posts` | Admin | Create a post |
+| `PATCH` | `/api/posts/:id` | Admin | Update a post |
+| `DELETE` | `/api/posts/:id` | Admin | Delete a post |
 
-## ⭐ Show Your Support
+Protected routes require an authorization header:
 
-If you like this project, give it a ⭐ on GitHub!
+```text
+Authorization: Bearer <token>
+```
+
+## Production notes
+
+- Use a strong, private `JWT_SECRET`.
+- Never commit `.env` files or database credentials.
+- Set `VITE_API_URL` to the deployed backend API URL before building the frontend.
+- Restrict CORS to the deployed frontend origin.
+- Replace the default credentials in `backend/seed.js`.
+
+## License
+
+This project is available under the ISC license.
