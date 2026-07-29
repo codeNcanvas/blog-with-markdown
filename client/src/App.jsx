@@ -15,7 +15,7 @@ function App() {
       <div className='App'>
         {/*  Render the Navbar component here. It will now appear on every page. */}
         <Navbar />
-        <main style={{ padding: '1rem' }}>
+        <main className="app-main">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/post/:id" element={<PostPage/>} />

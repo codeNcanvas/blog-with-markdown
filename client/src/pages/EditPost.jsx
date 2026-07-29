@@ -74,7 +74,10 @@ const EditPost = () => {
 
   return (
     <div className="create-post-page">
-      <h2>Edit Post</h2>
+      <div className="editor-heading">
+        <h2>Edit story</h2>
+        <p>Refine your draft and keep your story up to date.</p>
+      </div>
       <form onSubmit={handleSubmit} className="create-post-form">
         <div className="form-group">
           <label htmlFor="title">Title</label>

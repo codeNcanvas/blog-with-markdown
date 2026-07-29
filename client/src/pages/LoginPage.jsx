@@ -45,6 +45,7 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <h2>Admin Login</h2>
+      <p className="login-intro">Welcome back. Sign in to manage your stories.</p>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -72,7 +73,7 @@ const LoginPage = () => {
             disabled={loading} // Disable input while loading
           />
         </div>
-        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+        {error && <p className="form-error">{error}</p>}
         
         <button type="submit" className="login-button" disabled={loading}>
           {loading ? 'Logging In...' : 'Log In'}

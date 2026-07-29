@@ -44,7 +44,10 @@ const CreatePost = () => {
 
   return (
     <div className="create-post-page">
-      <h2>Create New Post</h2>
+      <div className="editor-heading">
+        <h2>Create new story</h2>
+        <p>Turn your ideas into something worth reading.</p>
+      </div>
       <form onSubmit={handleSubmit} className="create-post-form">
         <div className="form-group">
           <label htmlFor="title">Title</label>

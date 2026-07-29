@@ -1,60 +1,99 @@
-/* client/src/pages/LoginPage.css */
-
 .login-page {
-  max-width: 400px;
-  margin: 4rem auto;
-  padding: 2rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
+  max-width: 480px;
+  margin: 44px auto;
+  padding: clamp(28px, 6vw, 48px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.login-page::before {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 22px;
+  place-items: center;
+  border-radius: 17px;
+  color: white;
+  background: var(--accent-strong);
+  content: '✦';
+  font-size: 1.35rem;
 }
 
 .login-page h2 {
+  margin-bottom: 8px;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #333;
 }
 
-.login-form .form-group {
-  margin-bottom: 1.5rem;
+.login-intro {
+  margin-bottom: 30px;
+  color: var(--muted);
+  text-align: center;
 }
 
-.login-form label {
+.login-form .form-group,
+.create-post-form .form-group {
+  margin-bottom: 20px;
+}
+
+.login-form label,
+.create-post-form label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #555;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
-}
-
-.login-form input:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-.login-button {
-  width: 100%;
-  padding: 0.8rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--heading);
+  font-size: 0.86rem;
   font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
 }
 
-.login-button:hover {
-  background-color: #0056b3;
+.login-form input,
+.create-post-form .form-control {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--heading);
+  background: var(--surface-solid);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.login-form input:focus,
+.create-post-form .form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 13%, transparent);
+}
+
+.login-button,
+.create-post-form .submit-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: white;
+  background: var(--accent-strong);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent) 18%, transparent);
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.login-button:hover:not(:disabled),
+.create-post-form .submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 25px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.login-button:disabled,
+.create-post-form .submit-btn:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.form-error {
+  margin-bottom: 16px;
+  color: var(--danger);
+  font-size: 0.9rem;
+  text-align: center;
 }

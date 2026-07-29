@@ -63,6 +63,7 @@ const AdminDashboard = () => {
         </Link>
       </div>
 
+      <div className="table-wrap">
       <table className="posts-table">
         <thead>
           <tr>
@@ -98,6 +99,7 @@ const AdminDashboard = () => {
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

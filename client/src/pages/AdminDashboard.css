@@ -1,109 +1,124 @@
-
-
 .admin-dashboard {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 32px auto;
+  padding: clamp(22px, 4vw, 40px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
 }
 
 .dashboard-header {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
   align-items: center;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid #f0f0f0;
-  padding-bottom: 1rem;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
 }
 
 .dashboard-header h2 {
   margin: 0;
-  color: #333;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
+.create-post-btn {
+  padding: 12px 17px;
+  border-radius: 11px;
+  color: white;
+  background: var(--accent-strong);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 180ms ease;
+}
+
+.create-post-btn:hover {
+  transform: translateY(-2px);
+}
+
+.table-wrap {
+  overflow-x: auto;
 }
 
 .posts-table {
   width: 100%;
-  border-collapse: collapse; /* Removes space between table cells */
+  border-collapse: collapse;
+  text-align: left;
 }
 
 .posts-table th,
 .posts-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
 }
 
-.posts-table thead th {
-  background-color: #f8f9fa;
-  font-weight: 600;
-  color: #495057;
+.posts-table th {
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.posts-table tbody tr:nth-of-type(even) {
-  background-color: #f8f9fa;
+.posts-table td {
+  color: var(--text);
+  font-size: 0.91rem;
+}
+
+.posts-table td:first-child {
+  color: var(--heading);
+  font-weight: 700;
+}
+
+.posts-table tbody tr {
+  transition: background 160ms ease;
 }
 
 .posts-table tbody tr:hover {
-  background-color: #e9ecef;
+  background: var(--surface-soft);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-buttons .btn {
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.edit-btn {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+}
+
+.delete-btn {
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 11%, transparent);
 }
 
 .loading-message,
 .error-message {
+  padding: 64px 20px;
+  color: var(--muted);
   text-align: center;
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: #6c757d;
 }
 
 .error-message {
-  color: #dc3545;
+  color: var(--danger);
 }
 
-.posts-table .action-buttons {
-  display: flex;
-  gap: 10px; 
-  align-items: center;
-}
-
-.action-buttons .btn {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none; 
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  display: inline-block; 
-  text-align: center;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.action-buttons .btn:hover {
-  opacity: 0.85; 
-}
-
-.action-buttons .edit-btn {
-  background-color: #007bff; 
-}
-
-.action-buttons .delete-btn {
-  background-color: #dc3545; 
-}
-
-
-.dashboard-header .create-post-btn {
-  padding: 8px 16px;
-  background-color: #28a745; 
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
-}
-
-.dashboard-header .create-post-btn:hover {
-  background-color: #218838;
+@media (max-width: 620px) {
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }

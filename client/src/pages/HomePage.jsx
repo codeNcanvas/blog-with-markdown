@@ -59,12 +59,22 @@ const HomePage = () => {
           content="Welcome to My Awesome Blog. Read the latest articles on web development, technology, and more." 
         />
       </Helmet>
-      <h1>Latest Posts</h1>
+      <section className="home-hero">
+        <div className="hero-content">
+          <span className="eyebrow">Ideas worth sharing</span>
+          <h1>Thoughtful stories for curious minds.</h1>
+          <p>Explore fresh perspectives, practical lessons, and ideas shaped by the craft of building for the web.</p>
+        </div>
+      </section>
+      <div className="section-heading">
+        <h2>Latest stories</h2>
+        <span>Fresh from the journal</span>
+      </div>
       <div className="post-list">
         {posts.length > 0 ? (
           posts.map(post => <PostListItem key={post._id} post={post} />)
         ) : (
-          <p>No posts to display.</p>
+          <p className="empty-state">No stories published yet. Check back soon.</p>
         )}
       </div>
 

@@ -1,67 +1,172 @@
-
 .home-page {
-  max-width: 800px;
-  margin: 2rem auto;
+  padding-top: 12px;
 }
 
-.post-list-item {
-  background-color: #fff;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+.home-hero {
+  position: relative;
+  display: grid;
+  min-height: 420px;
+  margin-bottom: 34px;
+  padding: clamp(34px, 7vw, 76px);
+  overflow: hidden;
+  align-items: end;
+  border-radius: var(--radius-lg);
+  color: white;
+  background:
+    linear-gradient(120deg, rgba(8, 56, 38, 0.97), rgba(20, 122, 85, 0.85)),
+    var(--accent);
+  box-shadow: var(--shadow-lg);
 }
 
-.post-list-item h2 a {
-  text-decoration: none;
-  color: #333;
+.home-hero::before,
+.home-hero::after {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  content: '';
 }
 
-.post-list-item h2 a:hover {
-  color: #007bff;
+.home-hero::before {
+  width: 350px;
+  height: 350px;
+  top: -170px;
+  right: -70px;
 }
 
-/* --- Pagination Controls Styling --- */
+.home-hero::after {
+  width: 210px;
+  height: 210px;
+  top: -80px;
+  right: 80px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: #d6f8e8;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  max-width: 660px;
+  margin-bottom: 18px;
+  color: white;
+  font-size: clamp(2.5rem, 7vw, 5.2rem);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.home-hero p {
+  max-width: 590px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: clamp(1rem, 2vw, 1.16rem);
+  line-height: 1.7;
+}
+
+.section-heading {
+  display: flex;
+  margin: 12px 0 20px;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  letter-spacing: -0.035em;
+}
+
+.section-heading span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 64px 24px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+  background: var(--surface);
+}
+
 .pagination-controls {
   display: flex;
-  justify-content: space-between;
+  margin-top: 28px;
+  padding: 14px;
   align-items: center;
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
 }
 
-.pagination-controls .page-info {
+.page-info {
+  padding-left: 8px;
+  color: var(--muted);
+  font-size: 0.88rem;
   font-weight: 600;
-  color: #495057;
 }
 
-.pagination-controls .pagination-buttons {
+.pagination-buttons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .pagination-controls .btn {
-  padding: 8px 16px;
-  border: 1px solid #007bff;
-  background-color: #007bff;
+  padding: 10px 17px;
+  border: 0;
+  border-radius: 10px;
   color: white;
-  border-radius: 5px;
+  background: var(--accent-strong);
   cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
+  font-weight: 700;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 
 .pagination-controls .btn:hover:not(:disabled) {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  transform: translateY(-2px);
 }
 
-/* Style for disabled buttons */
 .pagination-controls .btn:disabled {
-  background-color: #cce5ff;
-  border-color: #cce5ff;
-  color: #6c757d;
+  color: var(--muted);
+  background: var(--surface-soft);
   cursor: not-allowed;
+  opacity: 0.65;
+}
+
+@media (max-width: 760px) {
+  .home-hero {
+    min-height: 360px;
+  }
+
+  .post-list {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading span {
+    display: none;
+  }
 }
